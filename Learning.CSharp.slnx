@@ -1,0 +1,6 @@
+<Solution>
+  <Folder Name="/C - Functional/" />
+  <Folder Name="/C - Functional/10 - Delegates/">
+    <Project Path="C - Functional/10 - Delegates/Delegates/Delegates.csproj" />
+  </Folder>
+</Solution>

@@ -10,5 +10,10 @@
 //DelegateAction.RunExercise();
 
 //DelegateFunc.Run();
-DelegateFunc.RunExercise();
+//DelegateFunc.RunExercise();
+#endregion
+
+#region Predicate
+//DelegatePredicate.Run();
+DelegatePredicate.RunExercise();
 #endregion

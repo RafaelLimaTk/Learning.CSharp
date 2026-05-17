@@ -283,3 +283,89 @@ public static class DelegateFunc
 }
 
 #endregion
+
+#region Predicate
+
+public static class DelegatePredicate
+{
+    /*
+        Predicate<T>
+
+        Recebe T
+        Retorna bool
+
+        Ele representa:
+        - regras
+        - filtros
+        - validações
+        - condições
+    */
+
+    public static void Run()
+    {
+        Console.WriteLine(IsEven(10)); // True
+        Console.WriteLine(IsEven(5)); // False
+
+        List<int> numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+        List<int> evenNumbers = Filter(numbers, IsEven);
+        Console.WriteLine("Números pares:");
+        evenNumbers.ForEach(Console.WriteLine);
+    }
+
+    public static void RunExercise()
+    {
+        List<User> users =
+        [
+            new("Rafael", 25, true),
+            new("João", 17, true),
+            new("Maria", 30, false),
+            new("Pedro", 40, true)
+        ];
+
+        Predicate<User> isAdult = user => user.Age >= 18;
+        Predicate<User> isActive = user => user.IsActive;
+
+        List<User> activeAdults = Filter(users, user => isAdult(user) && isActive(user));
+        Console.WriteLine("Usuários ativos e adultos:");
+        activeAdults.ForEach(user => Console.WriteLine(user.Name));
+    }
+
+    private static List<T> Filter<T>(
+        IEnumerable<T> items,
+        Predicate<T> predicate)
+    {
+        var result = new List<T>();
+        foreach (var item in items)
+        {
+            if (predicate(item))
+            {
+                result.Add(item);
+            }
+        }
+        return result;
+    }
+
+    private static bool IsEven(int value)
+    {
+        return value % 2 == 0;
+    }
+
+    public sealed class User
+    {
+        public User(
+            string name,
+            int age,
+            bool isActive)
+        {
+            Name = name;
+            Age = age;
+            IsActive = isActive;
+        }
+
+        public string Name { get; }
+        public int Age { get; }
+        public bool IsActive { get; }
+    }
+}
+
+#endregion
